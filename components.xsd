@@ -31,7 +31,11 @@
     <xs:complexType name="itemType">
         <xs:all>
             <xs:element name="id" type="xs:string"/>
-            <xs:element name="count" type="xs:int" minOccurs="0"/>
+            <xs:element name="count" minOccurs="0">
+                <xs:simpleType>
+                    <xs:union memberTypes="xs:int varAttr"/>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="tag" type="xs:string" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
@@ -234,11 +238,7 @@
 
     <xs:element name="embed_msg" substitutionGroup="component">
         <xs:complexType>
-            <xs:attribute name="ref" use="required">
-                <xs:simpleType>
-                    <xs:union memberTypes="xs:Name varAttr"/>
-                </xs:simpleType>
-            </xs:attribute>
+            <xs:attribute name="ref" type="xs:Name" use="required"/>
         </xs:complexType>
     </xs:element>
 
