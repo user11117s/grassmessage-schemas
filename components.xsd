@@ -11,6 +11,12 @@
             <xs:pattern value="#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}"/>
         </xs:restriction>
     </xs:simpleType>
+    
+    <xs:simpleType name="varAttr">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\$\([^$()]\)"/>
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:complexType name="empty"/>
 
@@ -115,7 +121,11 @@
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
-                    <xs:attribute name="hex" type="hexColor" use="required"/>
+                    <xs:attribute name="hex" use="required">
+                        <xs:simpleType>
+                            <xs:union memberTypes="hexColor varAttr"/>
+                        </xs:simpleType>
+                    </xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
@@ -125,7 +135,11 @@
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
-                    <xs:attribute name="color" type="hexColor8" use="required"/>
+                    <xs:attribute name="color" use="required">
+                        <xs:simpleType>
+                            <xs:union memberTypes="hexColor8 varAttr"/>
+                        </xs:simpleType>
+                    </xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
@@ -220,7 +234,11 @@
 
     <xs:element name="embed_msg" substitutionGroup="component">
         <xs:complexType>
-            <xs:attribute name="ref" type="xs:Name" use="required"/>
+            <xs:attribute name="ref" use="required">
+                <xs:simpleType>
+                    <xs:union memberTypes="xs:Name varAttr"/>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
