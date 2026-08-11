@@ -77,16 +77,16 @@
     <!-- Styling -->
 
     <xs:element name="bold" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="b" substitutionGroup="bold"/>
+    <xs:element name="b" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="italic" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="i" substitutionGroup="italic"/>
+    <xs:element name="i" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="underlined" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="u" substitutionGroup="underlined"/>
+    <xs:element name="u" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="strikethrough" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="st" substitutionGroup="strikethrough"/>
+    <xs:element name="st" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="reset" substitutionGroup="component" type="compositeComponent"/>
     <xs:element name="obf" substitutionGroup="component" type="compositeComponent"/>
