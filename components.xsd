@@ -23,8 +23,8 @@
     <xs:element name="component" type="xs:anyType" abstract="true"/>
     
     <xs:complexType name="dataComponent">
-        <xs:attribute name="key" type="xs:string"/>
-        <xs:attribute name="var" type="xs:string"/>
+        <xs:attribute name="key" type="xs:string" use="required"/>
+        <xs:attribute name="var" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="compositeComponent" mixed="true">
