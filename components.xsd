@@ -41,18 +41,24 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="itemType">
-        <xs:sequence>
-            <xs:element name="id" type="xs:string"/>
-            <xs:element name="count" minOccurs="0">
-                <xs:simpleType>
-                    <xs:union memberTypes="xs:int varAttr"/>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="sdata" type="stringDataComponent" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="vdata" type="valuedDataComponent" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
+    <xs:element name="show_item">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+                <xs:element name="count" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:union memberTypes="xs:int varAttr"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="sdata" type="stringDataComponent" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="vdata" type="valuedDataComponent" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="uniqueKey">
+            <xs:selector xpath="sdata|vdata"/>
+            <xs:field xpath="@key"/>
+        </xs:unique>
+    </xs:element>
 
     <xs:complexType name="entityType">
         <xs:all>
@@ -91,12 +97,7 @@
                 <xs:element name="content" type="compositeComponent"/>
                 <xs:choice>
                     <xs:element name="show_text" type="compositeComponent"/>
-                    <xs:element name="show_item" type="itemType">
-                        <xs:unique name="uniqueKey">
-                            <xs:selector xpath="sdata|vdata"/>
-                            <xs:field xpath="key"/>
-                        </xs:unique>
-                    </xs:element>
+                    <xs:element ref="show_item"/>
                     <xs:element name="show_entity" type="entityType"/>
                 </xs:choice>
             </xs:sequence>
