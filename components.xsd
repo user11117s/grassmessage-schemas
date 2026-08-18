@@ -21,8 +21,16 @@
     <xs:complexType name="empty"/>
 
     <xs:element name="component" type="xs:anyType" abstract="true"/>
-    
-    <xs:complexType name="dataComponent">
+
+    <xs:complexType name="stringDataComponent">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="key" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="valuedDataComponent">
         <xs:attribute name="key" type="xs:string" use="required"/>
         <xs:attribute name="var" type="xs:string" use="required"/>
     </xs:complexType>
@@ -41,7 +49,8 @@
                     <xs:union memberTypes="xs:int varAttr"/>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="data" type="dataComponent" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="sdata" type="stringDataComponent" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="vdata" type="valuedDataComponent" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -82,7 +91,12 @@
                 <xs:element name="content" type="compositeComponent"/>
                 <xs:choice>
                     <xs:element name="show_text" type="compositeComponent"/>
-                    <xs:element name="show_item" type="itemType"/>
+                    <xs:element name="show_item" type="itemType">
+                        <xs:unique name="uniqueKey">
+                            <xs:selector xpath="sdata|vdata"/>
+                            <xs:field xpath="key"/>
+                        </xs:unique>
+                    </xs:element>
                     <xs:element name="show_entity" type="entityType"/>
                 </xs:choice>
             </xs:sequence>
