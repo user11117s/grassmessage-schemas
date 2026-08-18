@@ -21,6 +21,11 @@
     <xs:complexType name="empty"/>
 
     <xs:element name="component" type="xs:anyType" abstract="true"/>
+    
+    <xs:complexType name="dataComponent">
+        <xs:attribute name="key" type="xs:string"/>
+        <xs:attribute name="var" type="xs:string"/>
+    </xs:complexType>
 
     <xs:complexType name="compositeComponent" mixed="true">
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -29,15 +34,15 @@
     </xs:complexType>
 
     <xs:complexType name="itemType">
-        <xs:all>
+        <xs:sequence>
             <xs:element name="id" type="xs:string"/>
             <xs:element name="count" minOccurs="0">
                 <xs:simpleType>
                     <xs:union memberTypes="xs:int varAttr"/>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="tag" type="xs:string" minOccurs="0"/>
-        </xs:all>
+            <xs:element name="data" type="dataComponent" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="entityType">
