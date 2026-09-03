@@ -181,11 +181,11 @@
 
     <xs:element name="styleref" substitutionGroup="component">
         <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="xs:string">
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
                     <xs:attribute name="ref" type="xs:Name" use="required"/>
                 </xs:extension>
-            </xs:simpleContent>
+            </xs:complexContent>
         </xs:complexType>
     </xs:element>
 
@@ -265,6 +265,17 @@
     <xs:element name="adventure" substitutionGroup="component">
         <xs:complexType>
             <xs:attribute name="name" type="xs:Name" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="pre" substitutionGroup="component">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
+                    <xs:attribute name="dedent" type="xs:boolean" default="true"/>
+                    <xs:attribute name="trim_bounds" type="xs:boolean" default="true"/>
+                </xs:extension>
+            </xs:complexContent>
         </xs:complexType>
     </xs:element>
 </xs:schema>
