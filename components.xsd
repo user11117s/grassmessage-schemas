@@ -267,13 +267,14 @@
             <xs:attribute name="name" type="xs:Name" use="required"/>
         </xs:complexType>
     </xs:element>
-    
+
     <xs:element name="pre" substitutionGroup="component">
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
                     <xs:attribute name="dedent" type="xs:boolean" default="true"/>
                     <xs:attribute name="trim_bounds" type="xs:boolean" default="true"/>
+                    <xs:attribute name="inline" type="xs:boolean" default="false"/>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
