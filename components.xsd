@@ -12,6 +12,12 @@
         </xs:restriction>
     </xs:simpleType>
     
+    <xs:simpleType name="uuid">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
     <xs:simpleType name="varAttr">
         <xs:restriction base="xs:string">
             <xs:pattern value="\$\([^$()]*\)"/>
@@ -277,6 +283,28 @@
                     <xs:attribute name="inline" type="xs:boolean" default="false"/>
                 </xs:extension>
             </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sprite" substitutionGroup="component">
+        <xs:complexType>
+            <xs:attribute name="atlas" type="xs:string"/>
+            <xs:attribute name="path" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="head" substitutionGroup="component">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="uuid">
+                    <xs:simpleType>
+                        <xs:union memberTypes="uuid varAttr"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="texture" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+            </xs:choice>
+            <xs:attribute name="outer_layer" type="xs:boolean" default="false"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
