@@ -113,11 +113,7 @@
                     </xs:element>
                     <xs:element name="show_dialog">
                         <xs:complexType>
-                            <xs:simpleContent>
-                                <xs:extension base="xs:string">
-                                    <xs:attribute name="var" type="xs:string"/>
-                                </xs:extension>
-                            </xs:simpleContent>
+                            <xs:attribute name="var" type="xs:string"/>
                         </xs:complexType>
                     </xs:element>
                 </xs:choice>
