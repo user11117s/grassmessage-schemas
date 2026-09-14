@@ -76,27 +76,6 @@
 
     <!-- Events -->
 
-    <xs:element name="click" substitutionGroup="component">
-        <xs:complexType>
-            <xs:complexContent>
-                <xs:extension base="compositeComponent">
-                    <xs:attribute name="action" use="required">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:enumeration value="run_command"/>
-                                <xs:enumeration value="suggest_command"/>
-                                <xs:enumeration value="open_url"/>
-                                <xs:enumeration value="change_page"/>
-                                <xs:enumeration value="copy_to_clipboard"/>
-                            </xs:restriction>
-                        </xs:simpleType>
-                    </xs:attribute>
-                    <xs:attribute name="value" type="xs:string" use="required"/>
-                </xs:extension>
-            </xs:complexContent>
-        </xs:complexType>
-    </xs:element>
-
     <xs:element name="hover" substitutionGroup="component">
         <xs:complexType>
             <xs:sequence>
@@ -105,6 +84,42 @@
                     <xs:element name="show_text" type="compositeComponent"/>
                     <xs:element ref="show_item"/>
                     <xs:element name="show_entity" type="entityType"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="click" substitutionGroup="component">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="content" type="compositeComponent"/>
+                <xs:choice>
+                    <xs:element name="run_command" type="xs:string"/>
+                    <xs:element name="suggest_command" type="xs:string"/>
+                    <xs:element name="open_url" type="xs:string"/>
+                    <xs:element name="change_page">
+                        <xs:simpleType>
+                            <xs:union memberTypes="xs:int varAttr"/>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="copy_to_clipboard" type="xs:string"/>
+                    <xs:element name="custom">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="id" type="xs:string"/>
+                                <xs:element name="payload" type="xs:string"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="show_dialog">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="var" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
                 </xs:choice>
             </xs:sequence>
         </xs:complexType>
