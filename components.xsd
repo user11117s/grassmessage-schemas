@@ -97,6 +97,7 @@
                     <xs:element name="run_command" type="xs:string"/>
                     <xs:element name="suggest_command" type="xs:string"/>
                     <xs:element name="open_url" type="xs:string"/>
+                    <xs:element name="open_file" type="xs:string"/>
                     <xs:element name="change_page">
                         <xs:simpleType>
                             <xs:union memberTypes="xs:int varAttr"/>
@@ -112,6 +113,11 @@
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="show_dialog">
+                        <xs:complexType>
+                            <xs:attribute name="var" type="xs:string" use="required"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="callback">
                         <xs:complexType>
                             <xs:attribute name="var" type="xs:string" use="required"/>
                         </xs:complexType>
