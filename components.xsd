@@ -17,6 +17,13 @@
             <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:simpleType name="simpleDuration">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(\d+d)?(\d+h)?(\d+m)?(\d+s)?"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
     
     <xs:simpleType name="varAttr">
         <xs:restriction base="xs:string">
@@ -53,7 +60,7 @@
                 <xs:element name="id" type="xs:string"/>
                 <xs:element name="count" minOccurs="0">
                     <xs:simpleType>
-                        <xs:union memberTypes="xs:int varAttr"/>
+                        <xs:union memberTypes="xs:nonNegativeInteger varAttr"/>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="sdata" type="stringDataComponent" minOccurs="0" maxOccurs="unbounded"/>
@@ -100,7 +107,7 @@
                     <xs:element name="open_file" type="xs:string"/>
                     <xs:element name="change_page">
                         <xs:simpleType>
-                            <xs:union memberTypes="xs:int varAttr"/>
+                            <xs:union memberTypes="xs:positiveInteger varAttr"/>
                         </xs:simpleType>
                     </xs:element>
                     <xs:element name="copy_to_clipboard" type="xs:string"/>
@@ -120,6 +127,16 @@
                     <xs:element name="callback">
                         <xs:complexType>
                             <xs:attribute name="var" type="xs:string" use="required"/>
+                            <xs:attribute name="uses" default="1">
+                                <xs:simpleType>
+                                    <xs:union memberTypes="xs:nonNegativeInteger varAttr"/>
+                                </xs:simpleType>
+                            </xs:attribute>
+                            <xs:attribute name="duration" default="12h">
+                                <xs:simpleType>
+                                    <xs:union memberTypes="simpleDuration varAttr"/>
+                                </xs:simpleType>
+                            </xs:attribute>
                         </xs:complexType>
                     </xs:element>
                 </xs:choice>
