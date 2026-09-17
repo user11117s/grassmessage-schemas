@@ -60,7 +60,7 @@
                 <xs:element name="id" type="xs:string"/>
                 <xs:element name="count" minOccurs="0">
                     <xs:simpleType>
-                        <xs:union memberTypes="xs:int varAttr"/>
+                        <xs:union memberTypes="xs:nonNegativeInteger varAttr"/>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="sdata" type="stringDataComponent" minOccurs="0" maxOccurs="unbounded"/>
@@ -129,7 +129,7 @@
                             <xs:attribute name="var" type="xs:string" use="required"/>
                             <xs:attribute name="uses" default="1">
                                 <xs:simpleType>
-                                    <xs:union memberTypes="xs:nonNegativeInteger varAttr"/>
+                                    <xs:union memberTypes="xs:int varAttr"/>
                                 </xs:simpleType>
                             </xs:attribute>
                             <xs:attribute name="duration" default="12h">
