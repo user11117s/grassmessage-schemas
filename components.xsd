@@ -315,7 +315,7 @@
 
     <xs:element name="adventure" substitutionGroup="component">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:Name" use="required"/>
+            <xs:attribute name="src" type="varAttr" use="required"/>
         </xs:complexType>
     </xs:element>
 
