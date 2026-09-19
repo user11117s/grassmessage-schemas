@@ -76,7 +76,11 @@
     <xs:complexType name="entityType">
         <xs:all>
             <xs:element name="type" type="xs:string"/>
-            <xs:element name="uuid" type="xs:string"/>
+            <xs:element name="uuid">
+                <xs:simpleType>
+                    <xs:union memberTypes="uuid varAttr"/>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="name" type="compositeComponent" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
@@ -115,7 +119,14 @@
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="id" type="xs:string"/>
-                                <xs:element name="payload" type="xs:string"/>
+                                <xs:choice>
+                                    <xs:element name="spayload" type="xs:string"/>
+                                    <xs:element name="vpayload">
+                                        <xs:complexType>
+                                            <xs:attribute name="src" type="varAttr" use="required"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:choice>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
