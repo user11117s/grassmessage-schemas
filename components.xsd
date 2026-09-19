@@ -45,7 +45,7 @@
 
     <xs:complexType name="valuedDataComponent">
         <xs:attribute name="key" type="xs:string" use="required"/>
-        <xs:attribute name="var" type="xs:string" use="required"/>
+        <xs:attribute name="src" type="varAttr" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="compositeComponent" mixed="true">
@@ -132,12 +132,12 @@
                     </xs:element>
                     <xs:element name="show_dialog">
                         <xs:complexType>
-                            <xs:attribute name="var" type="xs:string" use="required"/>
+                            <xs:attribute name="src" type="varAttr" use="required"/>
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="callback">
                         <xs:complexType>
-                            <xs:attribute name="var" type="xs:string" use="required"/>
+                            <xs:attribute name="src" type="varAttr" use="required"/>
                             <xs:attribute name="uses" default="1">
                                 <xs:simpleType>
                                     <xs:union memberTypes="xs:int varAttr"/>
